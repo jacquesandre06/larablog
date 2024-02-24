@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/articles/store', [UserController::class, 'store'])->name('articles.store');
     Route::get('/articles/{article}/edit', [UserController::class, 'edit'])->name('articles.edit');
     Route::post('/articles/{article}/update', [UserController::class, 'update'])->name('articles.update');
-    Route::post('/articles/{article}/remove', [UserController::class, 'remove'])->name('articles.remove');
+    Route::get('/articles/{article}/remove', [UserController::class, 'remove'])->name('articles.remove');
     Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
 });
 

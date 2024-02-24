@@ -37,8 +37,9 @@ class UserController extends Controller
     // $article->categories()->sync($request->input('categories'));
 
     // On redirige l'utilisateur vers la liste des articles
-    return redirect()->route('dashboard');
+    return redirect()->route('dashboard')->with('success', 'Article créé !');
 }
+
 
     public function index()
 {
@@ -91,7 +92,7 @@ public function remove(Request $request, Article $article)
     if ($article->user_id !== Auth::user()->id) {
         abort(403);
     }
-    $article = Article::find(user()->id);
+    // $article = Article::find(user()->id);
     $article->delete();
     return redirect()->route('dashboard')->with('success', 'Article supprimé !');
 
