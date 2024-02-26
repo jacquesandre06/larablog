@@ -19,4 +19,21 @@ class PublicController extends Controller
         'user' => $user
     ]);
 }
+    public function show(User $user, Article $article)
+{
+    // $user est l'utilisateur de l'article
+    // $article est l'article à afficher
+    
+    if ($article->draft)
+    { return redirect("/");
+    } else {
+        return view('public.show', [
+            'article' => $article,
+            'user' => $user
+        ]);
+    }
+    // Je vous laisse faire le code
+    // N'oubliez pas de vérifier que l'article est publié (draft == 0)
+    
+}
 }
