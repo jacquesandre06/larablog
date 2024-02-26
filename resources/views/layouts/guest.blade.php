@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -13,6 +14,17 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @auth
+            @include('layouts.navigation')
+        @endauth
+
+        @guest
+            @if (Route::has('login'))
+                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                </div>
+            @endif
+        @endguest
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
@@ -21,5 +33,7 @@
                 {{ $slot }}
             </div>
         </div>
+        
     </body>
+    
 </html>
