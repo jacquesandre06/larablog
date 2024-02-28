@@ -44,12 +44,12 @@ class UserController extends Controller
     public function index()
 {
     // // On récupère l'utilisateur connecté.
-    $user = Auth::user();
+    // $user = Auth::user();
 
     // // On retourne la vue.
     // return view('dashboard', []);
 
-    $articles = Article::where('user_id', $user->id)->get();
+    $articles = Article::get();
     return view('dashboard', [
         'articles' => $articles
     ]);
@@ -58,7 +58,7 @@ class UserController extends Controller
 {
     // On vérifie que l'utilisateur est bien le créateur de l'article
     if ($article->user_id !== Auth::user()->id) {
-        abort(403);
+        return redirect()->route('dashboard')->with('error', 'Vous ne pouvez pas modifié cet article !');
     }
 
     // On retourne la vue avec l'article
@@ -71,7 +71,7 @@ public function update(Request $request, Article $article)
 {
     // On vérifie que l'utilisateur est bien le créateur de l'article
     if ($article->user_id !== Auth::user()->id) {
-        abort(403);
+        return redirect()->route('dashboard')->with('error', 'Vous ne pouvez pas modifié cet article !');
     }
 
     // On récupère les données du formulaire
@@ -90,7 +90,7 @@ public function remove(Request $request, Article $article)
 {
          // On vérifie que l'utilisateur est bien le créateur de l'article
     if ($article->user_id !== Auth::user()->id) {
-        abort(403);
+    return redirect()->route('dashboard')->with('error', 'Vous ne pouvez pas supprimé cet article !');
     }
     // $article = Article::find(user()->id);
     $article->delete();
