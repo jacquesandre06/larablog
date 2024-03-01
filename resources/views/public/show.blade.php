@@ -36,10 +36,14 @@
              <!-- Ajouter le reste de votre formulaire -->
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                     <div class="p-6 text-gray-900 ">
-                   <!-- Input de titre de l'article -->
+                    
+                      <!-- liste des commentaire -->
+                   @foreach ($article->comments ,as $comment)
+                    <div class="p-6 text-gray-900 ">
+                  
                     <input type="text" name="title" id="title" placeholder="Aucun commentaire" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                      </div>
+                    @endforeach
 
                      <div class="p-6 pt-0 text-gray-900 ">
                    <!-- Contenu de l'article -->
