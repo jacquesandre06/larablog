@@ -8,16 +8,20 @@ use App\Models\Comment;
 use App\Models\User;
 use App\Models\Article;
 
+
 class CommentController extends Controller
 {
-    public function store(User $user , Request $request , Article $article)
+    public function store(User $user , Request $request , Article $articleId)
 
 {
     // On récupère les données du formulaire
     $data = $request->only(['content', 'article_id']);
 
-    $data['user_id'] = Auth::user()->id;
-    $comment = Comment::create($data); 
+    Comment::create([
+        'content' => $content,
+        'article_id' => $articleId,
+        'user_id' => Auth::user()->id
+    ]);
     
         return view('public.show', [
             'article' => $article,
