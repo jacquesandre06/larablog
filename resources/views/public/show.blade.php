@@ -37,17 +37,24 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     
-                      <!-- liste des commentaire -->
-                   @foreach ($article->comments ,as $comment)
-                    <div class="p-6 text-gray-900 ">
-                  
-                    <input type="text" name="title" id="title" placeholder="Aucun commentaire" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                     </div>
-                    @endforeach
+                    
 
                      <div class="p-6 pt-0 text-gray-900 ">
                    <!-- Contenu de l'article -->
-                    <textarea rows="5" name="content" id="content" placeholder="Votre commentaire" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                   <h2 class="mt-6">Commentaires</h2>
+                   
+                   <!-- Liste des commentaires -->
+                    @foreach ($article->comments as $comment)
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-4">
+                        <div class="p-6 text-gray-900">
+                            <h2 class="text-xl">{{ $user->name }} le {{ $comment->created_at->format('d/m/Y') }}</h2>
+                            <p class="text-gray-700 dark:text-gray-300">{{ substr($comment->content, 0, 20) }}...</p>            
+                         </div>
+                    </div>
+                    <hr>
+                    @endforeach
+                    
+                    <textarea rows="5" name="content" id="content" placeholder="Votre commentaire" class="mt-6 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
                     </div>
 
                     <div class="p-6 text-gray-900 flex items-center">
